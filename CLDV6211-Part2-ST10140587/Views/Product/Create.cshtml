@@ -1,8 +1,7 @@
-﻿@using CLDV6211_Part2_ST10140587.Data.ViewModels;
-@model ShoppingCartVM;
+﻿@model Product
 
 @{
-    ViewData["Title"] = "Shopping cart summary";
+    ViewData["Title"] = "Add a new product";
 }
 
 <!DOCTYPE html>
@@ -10,78 +9,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping cart summary</title>
-    <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="/css/Pages.css">
+    <title>Add a new product</title>
+    <link rel="stylesheet" href="/css/site.css">
 </head>
 <body style="background-color: #333333;">
-    <!-- Added background color to the body tag -->
 
-    <div class="row">
-        <div class="col-md-8 offset-2">
-            <div class="text-center">
-                <h2 style="color: #FFFFFF;">You shopping cart summary</h2>
-            </div>
-
-            <table class="table" style="background-color: #333333; color: #FFFFFF;">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Subtotal</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
-                    {
-                        <tr>
-                            <td class="align-middle">@item.Product.ProductName</td>
-                            <td class="align-middle">@item.Product.ProductPrice.ToString("c")</td>
-                            <td class="align-middle">@((item.Amount * item.Product.ProductPrice).ToString("c"))</td>
-                            <td class="align-middle">
-                                <a class="text-danger" asp-controller="Orders" asp-action="RemoveItemFromShoppingCart"
-                                   asp-route-id="@item.Product.Id">
-                                    <i class="bi bi-cart-dash"></i>
-                                </a>
-                                |
-                                <a class="text-success" asp-controller="Orders" asp-action="AddItemToShoppingCart"
-                                   asp-route-id="@item.Product.Id">
-                                    <i class="bi bi-cart-plus"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td><b>Total:</b></td>
-                        <td>
-                            @Model.ShoppingCartTotal.ToString("c")
-                        </td>
-                        <td></td>
-                    </tr>
-                </tfoot>
-            </table>
-
-            <div class="text-right">
-                <div class="btn-group">
-                    <form method="post" asp-controller="Orders" asp-action="CompleteOrder">
-                        <button type="submit" class="btn btn-outline-primary">
-                            Complete order
-                        </button>
+    <div class="row text">
+        <div class="col-md-8 offest-2">
+            <p>
+                <h1 style="color: #FFFFFF;">Add a new Product</h1>
+            </p>
+            <div class="row">
+                <div class="col-md-8 offset-2">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group text-center">
+                            <img id="ProductPicturePreview" />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ProductImage" class="control-lable" style="color: #FFFFFF;"></label>
+                            <input asp-for="ProductImage" class="form-control" style="background-color: #333333; color: #FFFFFF; border: 1px solid #FFFFFF;" />
+                            <span asp-validation-for="ProductImage" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ProductName" class="control-lable" style="color: #FFFFFF;"></label>
+                            <input asp-for="ProductName" class="form-control" style="background-color: #333333; color: #FFFFFF; border: 1px solid #FFFFFF;" />
+                            <span asp-validation-for="ProductName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ProductPrice" class="control-lable" style="color: #FFFFFF;"></label>
+                            <input asp-for="ProductPrice" class="form-control" style="background-color: #333333; color: #FFFFFF; border: 1px solid #FFFFFF;" />
+                            <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ProductCategory" class="control-lable" style="color: #FFFFFF;"></label>
+                            <input asp-for="ProductCategory" class="form-control" style="background-color: #333333; color: #FFFFFF; border: 1px solid #FFFFFF;" />
+                            <span asp-validation-for="ProductCategory" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ProductAvailability" class="control-lable" style="color: #FFFFFF;"></label>
+                            <input asp-for="ProductAvailability" class="form-control" style="background-color: #333333; color: #FFFFFF; border: 1px solid #FFFFFF;" />
+                            <span asp-validation-for="ProductAvailability" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                            <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+                        </div>
                     </form>
-                    <span style="padding:5px"></span>
-                    <a class="btn btn-outline-success" asp-controller="Store" asp-action="Index">
-                        Add more items
-                    </a>
+
                 </div>
             </div>
-
-
         </div>
     </div>
 
 </body>
 </html>
+
+@section Scripts {
+    <script>
+        $(document).ready(function ()) {
+            var output = document.getElementById('ProductPicturePreview');
+            output.src = $("#ProductImage").val();
+        }
+
+        $("#ProductImage").on("change", function () {
+            var output = document.getElementById('ProductPicturePreview');
+            output.src = $(this).val();
+        })
+    </script>
+}

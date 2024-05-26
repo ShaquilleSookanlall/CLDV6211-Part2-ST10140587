@@ -12,9 +12,3 @@ namespace CLDV6211_Part2_ST10140587.Data.Static
         public const string User = "User";
     }
 }
-namespace CLDV6211_Part2_ST10140587.Data.Statoc
-{
-    public class UserRoles
-    {
-    }
-}
