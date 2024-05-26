@@ -20,14 +20,14 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>@Html.DisplayNameFor(model => model.ProductImage)</th>
-                        <th>@Html.DisplayNameFor(model => model.ProductName)</th>
-                        <th>@Html.DisplayNameFor(model => model.ProductPrice)</th>
-                        <th>@Html.DisplayNameFor(model => model.ProductCategory)</th>
-                        <th>@Html.DisplayNameFor(model => model.ProductAvailability)</th>
+                        <th style="color:#ffffff">@Html.DisplayNameFor(model => model.ProductImage)</th>
+                        <th style="color:#ffffff">@Html.DisplayNameFor(model => model.ProductName)</th>
+                        <th style="color:#ffffff">@Html.DisplayNameFor(model => model.ProductPrice)</th>
+                        <th style="color:#ffffff">@Html.DisplayNameFor(model => model.ProductCategory)</th>
+                        <th style="color:#ffffff">@Html.DisplayNameFor(model => model.ProductAvailability)</th>
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
-                            <th>Actions</th>
+                            <th style="color:#ffffff">Actions</th>
                         }
                     </tr>
                 </thead>
@@ -35,19 +35,19 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td class="align-middle">
+                            <td class="align-middle" style="color:#ffffff">
                                 <img class="rounded-circle" src="@item.ProductImage" alt="@item.ProductName" style="max-width: 150px" />
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle" style="color:#ffffff">
                                 @Html.DisplayFor(modelItem => item.ProductName)
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle" style="color:#ffffff">
                                 @Html.DisplayFor(modelItem => item.ProductPrice)
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle" style="color:#ffffff">
                                 @Html.DisplayFor(modelItem => item.ProductCategory)
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle" style="color:#ffffff">
                                 @Html.DisplayFor(modelItem => item.ProductAvailability)
                             </td>
                             <td class="align-middle">
