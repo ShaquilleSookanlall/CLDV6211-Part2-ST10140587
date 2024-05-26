@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Catalogue";
+}
+
+<link rel="stylesheet" href="~/css/site.css" />
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @item.ProductName
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="@item.ProductImage" width="100%" alt="" />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text" style="color: black;"><b>@item.ProductName</b></p>
+                            <p class="card-text" style="color: black;"><b>Price</b> @item.ProductPrice</p>
+                            <p class="card-title" style="color: black;"><b>Category</b> @item.ProductCategory</p>
+                            <p class="card-title" style="color: black;"><b>Availability</b> @item.ProductAvailability</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="card-footer">
+                            <p class="card-text">
+                                <a class="btn btn-success text-white"
+                                   asp-controller="Orders"
+                                   asp-action="AddItemToShoppingCart"
+                                   asp-route-id="@item.Id">
+                                    <i class="bi bi-cart-plus"></i> Add to Cart (Price @item.ProductPrice.ToString("c"))
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

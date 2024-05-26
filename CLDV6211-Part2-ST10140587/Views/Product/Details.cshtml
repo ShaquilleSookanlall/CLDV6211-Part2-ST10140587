@@ -1,0 +1,75 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="/css/Pages.css">
+</head>
+<body style="background-color: #333333;">
+    <!-- Added background color to the body tag -->
+
+    <div class="row text">
+        <div class="col-md-8 offest-2">
+            <p>
+                <h1 style="color: #FFFFFF;">Details of @Model.ProductName</h1>
+            </p>
+            <div class="row">
+                <div class="col-md-8 offset-2">
+
+                    <div class="form-group text-center">
+                        <img id="ProductPicturePreview" />
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProductImage" class="control-lable" style="color: #FFFFFF;"></label>
+                        <input asp-for="ProductImage" class="form-control" readonly style="background-color: #333333; color: #FFFFFF; border: 1px solid #FFFFFF;" />
+                        <span asp-validation-for="ProductImage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProductName" class="control-lable" style="color: #FFFFFF;"></label>
+                        <input asp-for="ProductName" class="form-control" readonly style="background-color: #333333; color: #FFFFFF; border: 1px solid #FFFFFF;" />
+                        <span asp-validation-for="ProductName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProductPrice" class="control-lable" style="color: #FFFFFF;"></label>
+                        <input asp-for="ProductPrice" class="form-control" readonly style="background-color: #333333; color: #FFFFFF; border: 1px solid #FFFFFF;" />
+                        <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProductCategory" class="control-lable" style="color: #FFFFFF;"></label>
+                        <input asp-for="ProductCategory" class="form-control" readonly style="background-color: #333333; color: #FFFFFF; border: 1px solid #FFFFFF;" />
+                        <span asp-validation-for="ProductCategory" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProductAvailability" class="control-lable" style="color: #FFFFFF;"></label>
+                        <input asp-for="ProductAvailability" class="form-control" readonly style="background-color: #333333; color: #FFFFFF; border: 1px solid #FFFFFF;" />
+                        <span asp-validation-for="ProductAvailability" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <a class="btn btn-outline-success float-right" asp-action="Edit" asp-route-id="@Model.Id" style="background-color: #333333; color: #FFFFFF; border: 1px solid #FFFFFF;">Edit</a>
+                        <a class="btn btn-outline-secondary" asp-action="Index" style="background-color: #333333; color: #FFFFFF; border: 1px solid #FFFFFF;">Show all</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+@section Scripts {
+    <script>
+        $(document).ready(function ()) {
+            var output = document.getElementById('ProductPicturePreview');
+            output.src = $("#ProductImage").val();
+        }
+    </script>
+}

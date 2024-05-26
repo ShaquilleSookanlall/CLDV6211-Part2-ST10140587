@@ -1,0 +1,74 @@
+﻿@model List<Order>
+
+@{
+    ViewData["Title"] = "All orders";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All orders</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="/css/Pages.css">
+</head>
+<body style="background-color: #333333;">
+    <!-- Added background color to the body tag -->
+
+    <div class="row">
+        <div class="col-md-8 offset-2">
+            <p>
+                <h4 style="color: #FFFFFF;">List of all your orders</h4>
+            </p>
+
+            <table class="table" style="background-color: #333333; color: #FFFFFF;">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Items</th>
+                        <th>Total</th>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <th>User</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td class="align-middle">@order.Id</td>
+                            <td class="align-middle">
+                                <ul style="list-style-type:none">
+                                    @foreach (var item in order.OrderItems)
+                                    {
+                                        <li>
+                                            <div class="alert alert-info" role="alert" style="background-color: #333333; color: #FFFFFF;">
+                                                <span class="badge bg-success">@item.Amount</span> [@item.Price.ToString("c")] - @item.Product.ProductName
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </td>
+                            <td class="align-middle">
+                                @order.OrderItems.Select(m => m.Product.ProductPrice * m.Amount).Sum().ToString("c")
+                            </td>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <td class="align-middle">@order.User.FullName</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}

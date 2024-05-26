@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "List of Products";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Products</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="/css/Pages.css">
+</head>
+<body style="background-color: #333333; color: #FFFFFF;">
+    <!-- Added background color to the body tag and text color -->
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.ProductImage)</th>
+                        <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                        <th>@Html.DisplayNameFor(model => model.ProductPrice)</th>
+                        <th>@Html.DisplayNameFor(model => model.ProductCategory)</th>
+                        <th>@Html.DisplayNameFor(model => model.ProductAvailability)</th>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <th>Actions</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="align-middle">
+                                <img class="rounded-circle" src="@item.ProductImage" alt="@item.ProductName" style="max-width: 150px" />
+                            </td>
+                            <td class="align-middle">
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td class="align-middle">
+                                @Html.DisplayFor(modelItem => item.ProductPrice)
+                            </td>
+                            <td class="align-middle">
+                                @Html.DisplayFor(modelItem => item.ProductCategory)
+                            </td>
+                            <td class="align-middle">
+                                @Html.DisplayFor(modelItem => item.ProductAvailability)
+                            </td>
+                            <td class="align-middle">
+                                <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i>Edit</a>
+                                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="badge-info bi-eye"></i>Details</a>
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i>Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Fixed button for adding new product -->
+    <div style="position:fixed; right: 25px; bottom: 25px;">
+        <a asp-controller="Product" asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i>Add new
+        </a>
+    </div>
+
+    <!-- Partial view for creating new product -->
+    @await Html.PartialAsync("_CreateItem", "Product")
+</body>
+</html>

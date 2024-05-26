@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ApplicationUser>
+
+@{
+    ViewData["Title"] = "List of all users";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of all users</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="/css/Pages.css">
+</head>
+<body style="background-color: #333333;">
+    <!-- Added background color to the body tag -->
+
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <p>
+                <h4 style="color: #FFFFFF;">List of all users</h4>
+            </p>
+
+            <table class="table" style="background-color: #333333; color: #FFFFFF;">
+                <thead>
+                    <tr class="text-center">
+                        <th>@Html.DisplayNameFor(model => model.FullName)</th>
+                        <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    </tr>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                    <th>Actions</th>
+                    }
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="align-middle">@Html.DisplayFor(modelItem => item.FullName)</td>
+                            <td class="align-middle">@Html.DisplayFor(modelItem => item.UserName)</td>
+                            <td class="align-middle">@Html.DisplayFor(modelItem => item.Email)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
