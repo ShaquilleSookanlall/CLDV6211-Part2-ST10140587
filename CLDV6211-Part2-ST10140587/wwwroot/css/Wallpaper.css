@@ -1,0 +1,7 @@
+﻿body {
+    margin-bottom: 60px;
+    background-image: url('../Images/wallpaper.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

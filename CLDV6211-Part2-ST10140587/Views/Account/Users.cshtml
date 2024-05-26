@@ -11,10 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List of all users</title>
     <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="/css/Pages.css">
+    <link rel="stylesheet" href="~/css/Wallpaper.css">
 </head>
-<body style="background-color: #333333;">
-    <!-- Added background color to the body tag -->
+<body>
+    <!-- Removed inline styles for body background color -->
 
     <div class="row">
         <div class="col-md-6 offset-3">
@@ -22,17 +22,17 @@
                 <h4 style="color: #FFFFFF;">List of all users</h4>
             </p>
 
-            <table class="table" style="background-color: #333333; color: #FFFFFF;">
+            <table class="table">
                 <thead>
                     <tr class="text-center">
                         <th>@Html.DisplayNameFor(model => model.FullName)</th>
                         <th>@Html.DisplayNameFor(model => model.UserName)</th>
                         <th>@Html.DisplayNameFor(model => model.Email)</th>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <th>Actions</th>
+                        }
                     </tr>
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                    {
-                    <th>Actions</th>
-                    }
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
@@ -41,6 +41,12 @@
                             <td class="align-middle">@Html.DisplayFor(modelItem => item.FullName)</td>
                             <td class="align-middle">@Html.DisplayFor(modelItem => item.UserName)</td>
                             <td class="align-middle">@Html.DisplayFor(modelItem => item.Email)</td>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <td class="align-middle">
+                                    <!-- Add your action buttons here -->
+                                </td>
+                            }
                         </tr>
                     }
                 </tbody>

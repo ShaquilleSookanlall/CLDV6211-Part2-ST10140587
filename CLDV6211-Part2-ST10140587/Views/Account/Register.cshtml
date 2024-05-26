@@ -5,65 +5,22 @@
     ViewData["Title"] = "Sign up for a new account";
 }
 
-<link rel="stylesheet" href="~/css/site.css" />
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up for a new account</title>
-    <style>
-        body {
-            background-color: #333333;
-            color: white;
-        }
-
-        .form-control {
-            background-color: #444444;
-            color: white;
-            border: 1px solid #FF6600;
-        }
-
-            .form-control::placeholder {
-                color: #BBBBBB;
-            }
-
-        .control-label {
-            color: #FF6600;
-        }
-
-        .btn-outline-success {
-            color: #FF6600;
-            border-color: #FF6600;
-        }
-
-            .btn-outline-success:hover {
-                background-color: #FF6600;
-                border-color: #FF6600;
-            }
-
-        .btn-outline-secondary {
-            color: #FF6600;
-            border-color: #FF6600;
-        }
-
-            .btn-outline-secondary:hover {
-                background-color: #FF6600;
-                border-color: #FF6600;
-            }
-
-        .alert-danger {
-            background-color: #FF4444;
-            color: white;
-        }
-    </style>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="~/css/Wallpaper.css">
 </head>
 <body>
+    <!-- Removed inline styles for body background color -->
+
     <div class="row">
         <div class="col-md-6 offset-3">
             <p>
-                <h4>Sign up for a new account</h4>
+                <h4 style="color:#ffffff">Sign up for a new account</h4>
             </p>
 
             @if (TempData["Error"] != null)
@@ -108,5 +65,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>

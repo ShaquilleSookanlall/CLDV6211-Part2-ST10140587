@@ -1,4 +1,4 @@
-﻿﻿@using CLDV6211_Part2_ST10140587.Data.ViewModels;
+﻿@using CLDV6211_Part2_ST10140587.Data.ViewModels;
 @model LoginVM;
 
 @{
@@ -12,10 +12,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in to your account</title>
     <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="/css/Pages.css">
+    <link rel="stylesheet" href="~/css/Wallpaper.css">
 </head>
-<body style="background-color: #333333;">
-    <!-- Added background color to the body tag -->
+<body>
+    <!-- Removed background color from the body tag -->
 
     <div class="row">
         <div class="col-md-6 offset-3" style="margin-top: 20px;">
@@ -25,7 +25,7 @@
 
             @if (TempData["Error"] != null)
             {
-                <div class="col-md-12 alert alert-danger" style="background-color: #333333; color: #FFFFFF; border-radius: 15px; padding: 10px;">
+                <div class="col-md-12 alert alert-danger" style="color: #FFFFFF; border-radius: 15px; padding: 10px;">
                     <span><b>Sorry!</b> - @TempData["Error"] </span>
                 </div>
             }
@@ -37,18 +37,18 @@
 
                         <div class="form-group">
                             <label asp-for="EmailAddress" class="control-label" style="color: #FFFFFF;"></label>
-                            <input asp-for="EmailAddress" class="form-control" style="background-color: #333333; color: #FFFFFF; border: 1px solid #FFFFFF;" />
+                            <input asp-for="EmailAddress" class="form-control" />
                             <span asp-validation-for="EmailAddress" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="Password" class="control-label" style="color: #FFFFFF;"></label>
-                            <input asp-for="Password" class="form-control" style="background-color: #333333; color: #FFFFFF; border: 1px solid #FFFFFF;" />
+                            <input asp-for="Password" class="form-control" />
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
 
                         <div class="form-group">
                             <input class="btn btn-outline-success float-right" type="submit" value="Log in" />
-                            <a class="btn btn-outline-secondary" asp-controller="Store" asp-action="Index" style="background-color: #333333; color: #FFFFFF; border: 1px solid #FFFFFF;">Cancel</a>
+                            <a class="btn btn-outline-secondary" asp-controller="Store" asp-action="Index">Cancel</a>
                         </div>
                     </form>
                 </div>
